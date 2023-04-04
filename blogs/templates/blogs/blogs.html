@@ -1,0 +1,29 @@
+{% extends 'blogs/base.html' %}
+
+{% block page_header %}
+  <h3>My blogs:</h3>
+{% endblock page_header %}
+
+{% block content %}
+  <p>
+    <a href="{% url 'blogs:new_blog' %}">Add new blog</a>
+  </p>
+
+  <ul>
+  {% for blog in blogs %}
+    <div class="card mb-3">
+      <h4 class="card-header">
+  	  {{ blog.title }}
+        <p>{{ blog.date_added|date:'M d, Y H:i' }}</p>
+        <small><a href="{% url 'blogs:edit_blog' blog.id %}">
+            edit blog</a></small>
+      </h4>
+      <div class="card-body">
+        {{ blog.text|linebreaks }}
+      </div>
+    </div>
+  {% empty %}
+    <p>You have no blogs.</p>
+  {% endfor %}
+
+{% endblock content %}

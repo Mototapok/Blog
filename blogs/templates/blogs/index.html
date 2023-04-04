@@ -1,0 +1,16 @@
+{% extends "blogs/base.html" %}
+
+{% block page_header %}
+  <div class="jumbotron">
+
+    {% if user.is_authenticated %}
+      <h3 class="display-4">Hello, {{ user.username }} .Lets start Blogs.</h3>
+      <a href="{% url 'blogs:new_blog' %}">Add a new blog:</a>
+    {% else %}
+    <p><h3>Whats up User! Do you wanna register?</h2></p>
+    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+        role="button">Register &raquo;</a>
+    {% endif %}
+  </div>
+{% endblock page_header %}
+
